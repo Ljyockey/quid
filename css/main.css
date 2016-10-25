@@ -1,0 +1,63 @@
+body {
+    background-color: black;
+    background: url("../img/Wallpapersxl%20Quidditch%20Potter%20Images%20Photos%20Pitch%20Prince%20Stills%20292464%201920x1080.jpg") no-repeat center center fixed;
+    color: white;
+}
+
+div {
+    text-align: center;
+    font-size: 2em;
+}
+
+.clickhere {
+    background-color: #14052E;
+    opacity: .75;
+    color: #989799;
+    padding: 5px;
+    border-radius: 5%;
+}
+
+.how h3 {
+    font-size: 1.25em;
+    border-bottom: 2px solid #989799;
+}
+
+.clickhere:hover, .how h3:hover {
+    cursor: pointer;
+}
+
+.how p, .hide {
+    display: none;
+}
+
+.sorting {
+    display: none;
+}
+
+.housephoto {
+    opacity: .70;
+}
+
+.welcome {
+    display: none;
+}
+
+.flying {
+    display: none;
+}
+
+.match {
+    display: none;
+}
+
+.opponent {
+    text-transform: capitalize;
+}
+
+.win {
+    display: none;
+}
+
+.loss {
+    display: none;
+}
