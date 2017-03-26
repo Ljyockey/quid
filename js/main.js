@@ -22,33 +22,27 @@ $(".hide").click(function () {
 /*Sorting*/
 $("#sortClick").click(function (e) { 
     e.preventDefault();    
-    $(".sorting").hide(); 
-    var houseCase = "";
-    var i = 0;       
-    var house = $('input:checked').val();
+    $(".sorting").hide();       
+    var house = $('.sorting-form input:checked').val();
 
     switch(house) {
         case 'gryffindor': 
             $("head").append("<link rel='stylesheet' type='text/css' href='css/gryffindor.css'>");
-            i++;
             break;
         case 'slytherin':
             $("head").append("<link rel='stylesheet' type='text/css' href='css/slytherin.css'>");
-            i++;
             break;
         case 'hufflepuff':
             $("head").append("<link rel='stylesheet' type='text/css' href='css/hufflepuff.css'>");
-            i++;
             break;
         case 'ravenclaw':
             $("head").append("<link rel='stylesheet' type='text/css' href='css/ravenclaw.css'>");
-            i++;
-            break;
-        case null:
             break;
         default:
-            i = 0;
+            break;
     }  
+
+    $(".welcome").show(); 
     
 /*calculate opponent for 'big game'*/
  var r = Math.random();
@@ -67,15 +61,12 @@ while (x < 1) {
     else {
         opponent = "ravenclaw";
     }
-    if (opponent != houseCase) {
+    if (opponent !== house) {
         x++;
     }
     }
 $(".opponent").append(opponent); 
-/*End calculation*/    
-
-    
-$(".welcome").show();   
+/*End calculation*/      
 });    
     
 /*Flying Lesson*/
@@ -90,15 +81,32 @@ $("#ready").click(function() {
     $(".flying").hide();
     $(".match").show();
 }); 
+
+var gameForm = ('<form class="game-options">' +
+        '<fieldset class="game-options">' +
+            '<label for="game-options">What do you see? <br></label>' +
+                '<input type="radio" name="options" id="student" value="student" required>' +
+                    '<label for="student">Student<br></label>' +
+                '<input type="radio" name="options" id="bludger" value="bludger">' +
+                    '<label for="bludger">Bludger<br></label>' +
+                '<input type="radio" name="options" id="snitch" value="snitch">' +
+                    '<label for="snitch">Snitch<br></label>' +
+            '<button type="submit" class="clickhere" id="gameClick">Submit</button>' +   
+        '</fieldset>' + 
+    '</form>'); 
     
 $("#start").click(function() {
-    $(".match").hide(); 
-    
+    $(".match").hide();
+    $('.game').append(gameForm); 
+   
+
+$('#gameClick').click(function(e) {
+e.preventDefault();    
 var g = 0;
     while (g < 1)
         {
-            var gameChoice = prompt("What do you see? Student, Bludger, or Snitch").toLowerCase();
-            
+            var gameChoice = $('.game-options input:checked').val();
+            console.log(gameChoice);
             switch (gameChoice)
                 {
                     case "student":
@@ -115,5 +123,6 @@ var g = 0;
                         g = 0;
                 }
         }
+      });  
 });
 });
