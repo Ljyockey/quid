@@ -20,15 +20,14 @@ $(".hide").click(function () {
 });    
     
 /*Sorting*/
-$("#sortClick").click(function () { 
-$(".sorting").hide(); 
-var houseCase = "";
-var i = 0;    
-while (i < 1) {    
-var house = prompt("Where will you be sorted? Select Gryffindor, Ravenclaw, Hufflepuff, or Slytherin.");
-    houseCase = house === null ? null : house.toLowerCase();
+$("#sortClick").click(function (e) { 
+    e.preventDefault();    
+    $(".sorting").hide(); 
+    var houseCase = "";
+    var i = 0;       
+    var house = $('input:checked').val();
 
-    switch(houseCase) {
+    switch(house) {
         case 'gryffindor': 
             $("head").append("<link rel='stylesheet' type='text/css' href='css/gryffindor.css'>");
             i++;
@@ -49,8 +48,7 @@ var house = prompt("Where will you be sorted? Select Gryffindor, Ravenclaw, Huff
             break;
         default:
             i = 0;
-    }
-}  
+    }  
     
 /*calculate opponent for 'big game'*/
  var r = Math.random();
