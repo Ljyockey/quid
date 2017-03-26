@@ -79,17 +79,7 @@ var standsForm = ('<form class="stands-form">' +
             '<button type="submit" class="clickhere" id="standsClick">Submit</button>' +
         '</fieldset> ' +
     '</form>');
-    
-//  /*set variables for students*/   
-//     function Student(name, spell, house) {
-//     this.name = name;
-//     this.spell = spell;
-//     this.house = house;    
-//     }
-// /*end of setting variables for students*/ 
-    
-    
-    
+       
 /*function for interaction with other students*/  
 var interact = function() { 
 $('.game').html(standsForm);
@@ -136,47 +126,59 @@ if (stands !== "")
     }
 });
 };
+
+var bludgerForm = ('<form class="bludger-form">' +
+        '<fieldset class="bludger-form">' +
+            '<label for="bludger-form">Look out! A bludger is coming your way.<br></label>' +
+                '<input type="radio" name="bludger" id="dodge" value="dodge" required>' +
+                    '<label for="dodge">Dodge<br></label>' +
+                '<input type="radio" name="bludger" id="graze" value="graze">' +
+                    '<label for="graze">Graze<br></label>' +
+                '<input type="radio" name="bludger" id="hit" value="hit">' +
+                    '<label for="hit">Hit<br></label>' +
+                '<input type="radio" name="bludger" id="redirect" value="redirect">' +
+                    '<label for="redirect">Redirect<br></label>' +
+            '<button type="submit" class="clickhere" id="bludgerClick">Submit</button>' +
+        '</fieldset> ' +
+    '</form>');
     
 
 /*bludger function*/
 
 var bludger = function() {
-var b = 0;
-while (b < 1)
-{
-var bludgePrompt = prompt("Look out! A bludger is coming your way. Select dodge, graze, hit, redirect").toLowerCase();
-switch (bludgePrompt) {
+$('.game').html(bludgerForm);
+$('#bludgerClick').click(function(e) {
+e.preventDefault();
+var bludgerSelection = $('.bludger-form input:checked').val();
+switch (bludgerSelection) {
 
 case "dodge":
 alert("Way to dodge it! No Hospital Wing for you! Meanwhile, your team has scored 20 points!");
 myScore +=20;
-b++;
 break;
 
 case "graze":
 alert("The bludger grazed your broomstick! That was scary. Even scarier is that the other team scored 10 points!");
 rivalScore +=10;
-b++;
 break;
 
 case "hit":
 alert("You've been hit! Get back on track quickly. The other team has already scored 20 points!");
 rivalScore +=20;
-b++;
 break;
 
 case "redirect":
 alert("Amazing! You've managed to redirect the bludger while your team scored 10 points!");
 myScore += 10;
-b++;
 break;
 
 default:
 break;
 }
 
-};
+$('.game').html(gameForm);
+});
 /*End of bludger function*/    
-    
-    
+
 };
+

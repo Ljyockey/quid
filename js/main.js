@@ -45,10 +45,10 @@ $("#sortClick").click(function (e) {
     $(".welcome").show(); 
     
 /*calculate opponent for 'big game'*/
- var r = Math.random();
 var opponent = " ";    
  var x = 0;
 while (x < 1) {
+     var r = Math.random();
     if (r >= 0 && r <= 0.24) {
       opponent = "gryffindor";  
     }
@@ -102,13 +102,14 @@ var g = 0;
                         break;
                     case "bludger":
                         bludger();
+                        g++;
                         break;
                     case "snitch":
                         caught();
                         g++;
                         break;
                     default:
-                        g = 0;
+                       break;
                 }
         }
       });  
