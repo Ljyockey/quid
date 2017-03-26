@@ -61,6 +61,7 @@ while (x < 1) {
     else {
         opponent = "ravenclaw";
     }
+    console.log(opponent);
     if (opponent !== house) {
         x++;
     }
@@ -81,26 +82,13 @@ $("#ready").click(function() {
     $(".flying").hide();
     $(".match").show();
 }); 
-
-var gameForm = ('<form class="game-options">' +
-        '<fieldset class="game-options">' +
-            '<label for="game-options">What do you see? <br></label>' +
-                '<input type="radio" name="options" id="student" value="student" required>' +
-                    '<label for="student">Student<br></label>' +
-                '<input type="radio" name="options" id="bludger" value="bludger">' +
-                    '<label for="bludger">Bludger<br></label>' +
-                '<input type="radio" name="options" id="snitch" value="snitch">' +
-                    '<label for="snitch">Snitch<br></label>' +
-            '<button type="submit" class="clickhere" id="gameClick">Submit</button>' +   
-        '</fieldset>' + 
-    '</form>'); 
     
 $("#start").click(function() {
     $(".match").hide();
     $('.game').html(gameForm); 
    
 
-$('#gameClick').click(function(e) {
+$('.game-options').submit(function(e) {
 e.preventDefault();    
 var g = 0;
     while (g < 1)
@@ -110,6 +98,7 @@ var g = 0;
                 {
                     case "student":
                         interact();
+                        g++;
                         break;
                     case "bludger":
                         bludger();
