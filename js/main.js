@@ -97,7 +97,7 @@ var gameForm = ('<form class="game-options">' +
     
 $("#start").click(function() {
     $(".match").hide();
-    $('.game').append(gameForm); 
+    $('.game').html(gameForm); 
    
 
 $('#gameClick').click(function(e) {
@@ -106,7 +106,6 @@ var g = 0;
     while (g < 1)
         {
             var gameChoice = $('.game-options input:checked').val();
-            console.log(gameChoice);
             switch (gameChoice)
                 {
                     case "student":

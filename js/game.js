@@ -1,27 +1,38 @@
 var myScore = 0;
 var rivalScore = 0;    
     
+
+
+var caughtForm = ('<form class="caught-options">' +
+        '<fieldset class="caught-options">' +
+            '<label for="caught-options">The snitch is within reach! Do you catch it?<br></label>' +
+                '<input type="radio" name="options" id="yes" value="yes" required>' +
+                    '<label for="yes">Yes<br></label>' +
+                '<input type="radio" name="options" id="no" value="no">' +
+                    '<label for="no">No<br></label>' +
+            '<button type="submit" class="clickhere" id="caughtClick">Submit</button>' +   
+        '</fieldset>' + 
+    '</form>'); 
     
 /*function for catching snith*/  
 var caught = function() { 
- var s = 0;
+ $('.game').html(caughtForm);   
  var snitch = "";
-    while (s < 1) 
-    {
-snitch = prompt("The snitch is within reach! Do you catch it? Yes or No").toLowerCase();
+
+ $('#caughtClick').click(function(e) {
+    e.preventDefault();
+snitch = $('.caught-options input:checked').val();
+    $('.game').html('');
         switch(snitch) {
             case 'yes':
-                myScore = myScore +=150;
-                s++;
+               myScore +=150;
                 break;
             case 'no':
-                rivalScore = rivalScore +=150;
-                s++;
+                rivalScore +=150;
                 break;
             default:
-                s = 0;
+                break;
         }
-    }
 /*end of function for catching snitch*/    
     
 /*Final function for end of game*/
@@ -33,6 +44,8 @@ snitch = prompt("The snitch is within reach! Do you catch it? Yes or No").toLowe
         $(".loss").show();
     }
 /*End of final game-end function*/
+
+});
 
 $("#refresh").click(function() {
     window.location.reload();
