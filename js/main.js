@@ -15,15 +15,15 @@ var state = {
     //form used when 'student' is selected in game form
     standsForm: ('<form class="stands-form">' +
         '<fieldset class="stands-form">' +
-            '<label for="stands-form">You see a student eyeing you from the stands from which House?<br></label>' +
-                '<input type="radio" name="stands" id="gryffindor" value="gryffindor" required>' +
-                    '<label for="gryffindor">Gryffindor<br></label>' +
-                '<input type="radio" name="stands" id="slytherin" value="slytherin">' +
-                    '<label for="slytherin">Slytherin<br></label>' +
-                '<input type="radio" name="stands" id="ravenclaw" value="ravenclaw">' +
-                    '<label for="ravenclaw">Ravenclaw<br></label>' +
-                '<input type="radio" name="stands" id="hufflepuff" value="hufflepuff">' +
-                    '<label for="hufflepuff">Hufflepuff<br></label>' +
+            '<label for="stands-form">You see a student eyeing you in the stands from which house?<br></label>' +
+                '<input type="radio" name="stands" id="gryffindor-student" value="gryffindor-student" required>' +
+                    '<label for="gryffindor-student">Gryffindor<br></label>' +
+                '<input type="radio" name="stands" id="slytherin-student" value="slytherin-student">' +
+                    '<label for="slytherin-student">Slytherin<br></label>' +
+                '<input type="radio" name="stands" id="ravenclaw-student" value="ravenclaw-student">' +
+                    '<label for="ravenclaw-student">Ravenclaw<br></label>' +
+                '<input type="radio" name="stands" id="hufflepuff-student" value="hufflepuff-student">' +
+                    '<label for="hufflepuff-student">Hufflepuff<br></label>' +
             '<button type="submit" class="clickhere" id="standsClick">Submit</button>' +
         '</fieldset> ' +
         '</form>'),
@@ -158,25 +158,24 @@ function interact() {
             this.house = house;
             }       
     var stands = $('.stands-form input:checked').val();
-    switch (stands) {
-        case "gryffindor":
-            stands = new Student("Hermione Granger", "Countercurse", "Gryffindor");
-            break;
-        case "slytherin":
-            stands = new Student("Draco Malfoy", "Curse", "Slytherin");
-            break;
-        case "ravenclaw":
-            stands = new Student("Luna Lovegood", "Charms", "Ravenclaw");
-            break;
-        case "hufflepuff":
-            stands = new Student("Justin Finch", "Tampered Bludger", "Hufflepuff");
-            break;
-        default:
-            break;
-            }
-    
-    if (stands !== "")
-    {
+        switch (stands) {
+            case "gryffindor":
+                stands = new Student("Hermione Granger", "Countercurse", "Gryffindor");
+                console.log(stands);
+                break;
+            case "slytherin":
+                stands = new Student("Draco Malfoy", "Curse", "Slytherin");
+                break;
+            case "ravenclaw":
+                stands = new Student("Luna Lovegood", "Charms", "Ravenclaw");
+                break;
+            case "hufflepuff":
+                stands = new Student("Justin Finch", "Tampered Bludger", "Hufflepuff");
+                break;
+            default:
+                break;
+                }
+
     if (stands.house == "Gryffindor" || stands.house == "Ravenclaw")
         {
         alert("It's " + stands.name + ", with a " + stands.spell + ". Just what I'd expect from a " + stands.house + ". Meanwhile, your team has scored 10 points! Nice job.");
@@ -187,7 +186,6 @@ function interact() {
         state.rivalScore +=10;
          }    
         $('.game').html(state.gameForm);
-    }
         });
     };
 
