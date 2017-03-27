@@ -62,9 +62,9 @@ var house;
 //function to show sorting form
 function displaySortingForm() {
     $("#sorted").click(function () {
-    $(".header").hide();
-    $(".sorting").show();
-    }); 
+        $(".header").hide();
+        $(".sorting").show();
+        }); 
     }
 
 //function to get user's prefered Hogwarts House
@@ -73,7 +73,7 @@ function generateHouse() {
         e.preventDefault();    
         $(".sorting").hide();       
         var house = $('.sorting-form input:checked').val();
-
+        //adds CSS file based on user's House
         switch(house) {
             case 'gryffindor': 
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/gryffindor.css'>");
@@ -95,7 +95,7 @@ function generateHouse() {
         });
     } 
 
-//function to generate opponent for game
+//function to generate random opponent for game
 function generateOpponent() {
     var opponent = " ";    
      var x = 0;
@@ -120,7 +120,6 @@ function generateOpponent() {
         }
         }
     $(".opponent").append(opponent); 
-    /*End calculation*/  
     }
 
 function displayFlyingLesson() {
@@ -151,13 +150,16 @@ function interact() {
     $('.game').html(state.standsForm);
     $('#standsClick').click(function(e) { 
         e.preventDefault();   
-        var stands = "";    
+        var stands = "";  
+        //object to be used later in this function  
         function Student(name, spell, house) {
             this.name = name;
             this.spell = spell;
             this.house = house;
             }       
-    var stands = $('.stands-form input:checked').val();
+        //creates variable based on user's input    
+        var stands = $('.stands-form input:checked').val();
+        //turns stands variable into Student object
         switch (stands) {
             case "gryffindor-student":
                 stands = new Student("Hermione Granger", "Countercurse", "Gryffindor");
@@ -175,6 +177,7 @@ function interact() {
                 break;
                 }
 
+    //outcome based on value of the Student object
     if (stands.house == "Gryffindor" || stands.house == "Ravenclaw")
         {
         alert("It's " + stands.name + ", with a " + stands.spell + ". Just what I'd expect from a " + stands.house + ". Meanwhile, your team has scored 10 points! Nice job.");
@@ -193,7 +196,9 @@ function bludger() {
     $('.game').html(state.bludgerForm);
     $('#bludgerClick').on('click', function(e) {
         e.preventDefault();
+        //creates variable based on user selection
         var bludgerSelection = $('.bludger-form input:checked').val();
+        //returns outcome based on value of bludgerSelection
         switch (bludgerSelection) {
 
             case "dodge":
@@ -227,8 +232,10 @@ function bludger() {
 //main form displaying game options
 function gameOptions() {
     $('.game').on('submit', '.game-options', function(e) {
-        e.preventDefault();    
+        e.preventDefault();  
+        //variable based on user's input  
         var gameChoice = $('.game-options input:checked').val();
+        //routes to a different function depending on value of gameChoice
         switch (gameChoice)
             {
                 case "student":
@@ -278,12 +285,12 @@ function displayResults() {
     }
 
 function refresh() {
-    $("#refresh").click(function() {
-        window.location.reload();
+    $(".refresh").click(function() {
+        location.reload();
         });
     }        
 
-$(document).ready(function() {
+$(function() {
     displaySortingForm();
     generateHouse();
     generateOpponent();
