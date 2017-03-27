@@ -159,17 +159,16 @@ function interact() {
             }       
     var stands = $('.stands-form input:checked').val();
         switch (stands) {
-            case "gryffindor":
+            case "gryffindor-student":
                 stands = new Student("Hermione Granger", "Countercurse", "Gryffindor");
-                console.log(stands);
                 break;
-            case "slytherin":
+            case "slytherin-student":
                 stands = new Student("Draco Malfoy", "Curse", "Slytherin");
                 break;
-            case "ravenclaw":
+            case "ravenclaw-student":
                 stands = new Student("Luna Lovegood", "Charms", "Ravenclaw");
                 break;
-            case "hufflepuff":
+            case "hufflepuff-student":
                 stands = new Student("Justin Finch", "Tampered Bludger", "Hufflepuff");
                 break;
             default:
