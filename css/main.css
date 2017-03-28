@@ -4,9 +4,19 @@ body {
     color: white;
 }
 
+header {
+    margin-bottom: 50px;
+    margin-left: 2%;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
 section {
     text-align: center;
     font-size: 2em;
+    margin: 0 5%;
 }
 
 .clickhere {
@@ -15,6 +25,8 @@ section {
     color: #989799;
     padding: 5px;
     border-radius: 5%;
+    font-size: 0.75em;
+    margin-top: 20px;
 }
 
 .clickhere:hover {
@@ -32,6 +44,13 @@ section {
 
 .housephoto div {
     display: inline;
+}
+
+form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 img {

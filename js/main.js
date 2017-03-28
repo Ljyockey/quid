@@ -1,4 +1,19 @@
 var state = {
+    //form to get sorted into House
+    sortForm:  ('<form class="sorting-form">' +
+        '<fieldset class="sorting-form">' +
+            '<label for="sorting form">Where will you be sorted?<br></label>' +
+                '<input type="radio" name="sort" id="gryffindor" value="gryffindor" required>' +
+                    '<label for="gryffindor">Gryffindor<br></label>' +
+                '<input type="radio" name="sort" id="slytherin" value="slytherin">' +
+                    '<label for="slytherin">Slytherin<br></label>' +
+                '<input type="radio" name="sort" id="ravenclaw" value="ravenclaw">' +
+                    '<label for="ravenclaw">Ravenclaw<br></label>' +
+                '<input type="radio" name="sort" id="hufflepuff" value="hufflepuff">' +
+                    '<label for="hufflepuff">Hufflepuff<br></label>' +
+            '<button type="submit" class="clickhere" id="sortClick">Submit</button>' + 
+        '</fieldset>' + 
+        '</form>'),
     //main form for game options
     gameForm: ('<form class="game-options">' +
         '<fieldset class="game-options">' +
@@ -46,9 +61,9 @@ var state = {
     caughtForm: ('<form class="caught-options">' +
         '<fieldset class="caught-options">' +
             '<label for="caught-options">The snitch is within reach! Do you catch it?<br></label>' +
-                '<input type="radio" name="options" id="yes" value="yes" required>' +
+                '<input type="radio" name="caught" id="yes" value="yes" required>' +
                     '<label for="yes">Yes<br></label>' +
-                '<input type="radio" name="options" id="no" value="no">' +
+                '<input type="radio" name="caught" id="no" value="no">' +
                     '<label for="no">No<br></label>' +
             '<button type="submit" class="clickhere" id="caughtClick">Submit</button>' +   
         '</fieldset>' + 
@@ -65,17 +80,17 @@ var $rivalscore = $('.rival-score');
 function displaySortingForm() {
     $("#sorted").click(function () {
         $(".header").hide();
-        $(".sorting").show();
+        $(".sorting").show().append(state.sortForm);
         }); 
     }
 
 //function to get user's prefered Hogwarts House
 function generateHouse() {
-    $("#sortClick").click(function (e) { 
+    $(".sorting").on('click', '#sortClick', function(e) { 
         e.preventDefault();    
         $(".sorting").hide();       
         house = $('.sorting-form input:checked').val();
-        //adds CSS file based on user's House
+        //adds logo and CSS file based on user's House
         switch(house) {
             case 'gryffindor': 
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/gryffindor.css'>");
@@ -107,7 +122,7 @@ function generateOpponent() {
      var opponentPhoto;
     while (x < 1) {
         var r = Math.random();
-        if (r >= 0 && r <= 0.24) {
+        if (r <= 0.24) {
             opponent = "gryffindor";
             opponentPhoto = ('<img src="img/shield_01-5B1-5D.jpg" alt="Gryffindor logo">'); 
             }
@@ -277,7 +292,7 @@ function gameOptions() {
 function caught() { 
     $('.game').html(state.caughtForm);   
     var snitch = "";
-    $('#caughtClick').click(function(e) {
+    $('.game').on('click', '#caughtClick', function(e) {
         e.preventDefault();
         snitch = $('.caught-options input:checked').val();
         $('.game').html('');
