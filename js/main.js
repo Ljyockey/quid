@@ -58,6 +58,8 @@ var state = {
 }
 //variables that need to be global
 var house;
+var $myscore = $('.my-score');
+var $rivalscore = $('.rival-score');
 
 //function to show sorting form
 function displaySortingForm() {
@@ -72,25 +74,28 @@ function generateHouse() {
     $("#sortClick").click(function (e) { 
         e.preventDefault();    
         $(".sorting").hide();       
-        var house = $('.sorting-form input:checked').val();
+        house = $('.sorting-form input:checked').val();
         //adds CSS file based on user's House
         switch(house) {
             case 'gryffindor': 
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/gryffindor.css'>");
+                $('.my-house').html('<img src="img/shield_01-5B1-5D.jpg" alt="Gryffindor logo">');
                 break;
             case 'slytherin':
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/slytherin.css'>");
+                $('.my-house').html('<img src="img/shield_sly.jpg" alt="Slytherin logo">');
                 break;
             case 'hufflepuff':
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/hufflepuff.css'>");
+                $('.my-house').html('<img src="img/shield_huf.jpg" alt="Hufflepuff logo">');
                 break;
             case 'ravenclaw':
                 $("head").append("<link rel='stylesheet' type='text/css' href='css/ravenclaw.css'>");
+                $('.my-house').html('<img src="img/shield_rav.jpg" alt="Ravenclaw logo">');
                 break;
             default:
                 break;
             }  
-
         $(".welcome").show();
         });
     } 
@@ -99,26 +104,32 @@ function generateHouse() {
 function generateOpponent() {
     var opponent = " ";    
      var x = 0;
+     var opponentPhoto;
     while (x < 1) {
         var r = Math.random();
         if (r >= 0 && r <= 0.24) {
-            opponent = "gryffindor";  
+            opponent = "gryffindor";
+            opponentPhoto = ('<img src="img/shield_01-5B1-5D.jpg" alt="Gryffindor logo">'); 
             }
         else if (r >= 0.25 && r <= 0.49) {
             opponent = "slytherin";
+            opponentPhoto = ('<img src="img/shield_sly.jpg" alt="Slytherin logo">');
             }
         else if (r >= 0.5 && r <= 0.74) {
             opponent = "hufflepuff";
+            opponentPhoto = ('<img src="img/shield_huf.jpg" alt="Hufflepuff logo">');
             }
         else {
             opponent = "ravenclaw";
+            opponentPhoto = ('<img src="img/shield_rav.jpg" alt="Ravenclaw logo">');
             }
          //checks to ensure that opponent isn't
-         //same as user's House   
+         //same as user's House  
         if (opponent !== house) {
             x++;
         }
         }
+    $('.rival-house').html(opponentPhoto);    
     $(".opponent").append(opponent); 
     }
 
@@ -132,6 +143,7 @@ function displayFlyingLesson() {
 //function that displays opponent before game
 function displayOpponent() {
     $("#ready").click(function() {
+        generateOpponent();
         $(".flying").hide();
         $(".match").show();
         }); 
@@ -140,6 +152,8 @@ function displayOpponent() {
 //function that starts the game
 function startGame() {
     $("#start").click(function() {
+        $myscore.html(state.myScore);
+        $rivalscore.html(state.rivalScore);
         $(".match").hide();
         $('.game').html(state.gameForm); 
         });
@@ -181,11 +195,13 @@ function interact() {
     if (stands.house == "Gryffindor" || stands.house == "Ravenclaw")
         {
         alert("It's " + stands.name + ", with a " + stands.spell + ". Just what I'd expect from a " + stands.house + ". Meanwhile, your team has scored 10 points! Nice job.");
-        state.myScore +=10;    
+        state.myScore +=10;
+        $myscore.html(state.myScore);    
         }
     else {
           alert("It's " + stands.name + ", with a " + stands.spell + ". Just what I'd expect from a " + stands.house + ". Meanwhile, your opponent has scored 10 points with the quaffel! Be careful.");
         state.rivalScore +=10;
+        $rivalscore.html(state.rivalScore);
          }    
         $('.game').html(state.gameForm);
         });
@@ -204,21 +220,25 @@ function bludger() {
             case "dodge":
                 alert("Way to dodge it! No Hospital Wing for you! Meanwhile, your team has scored 20 points!");
                 state.myScore +=20;
+                $myscore.html(state.myScore);
                 break;
 
             case "graze":
                 alert("The bludger grazed your broomstick! That was scary. Even scarier is that the other team scored 10 points!");
                 state.rivalScore +=10;
+                $rivalscore.html(state.rivalScore);
                 break;
 
             case "hit":
                 alert("You've been hit! Get back on track quickly. The other team has already scored 20 points!");
                 state.rivalScore +=20;
+                $rivalscore.html(state.rivalScore);
                 break;
 
             case "redirect":
                 alert("Amazing! You've managed to redirect the bludger while your team scored 10 points!");
                 state.myScore += 10;
+                $myscore.html(state.myScore);
                 break;
 
             default:
@@ -264,9 +284,11 @@ function caught() {
         switch(snitch) {
             case 'yes':
                state.myScore +=150;
+               $myscore.html(state.myScore);
                 break;
             case 'no':
                 state.rivalScore +=150;
+                $rivalscore.html(state.rivalScore);
                 break;
             default:
                 break;
@@ -294,7 +316,6 @@ function refresh() {
 $(function() {
     displaySortingForm();
     generateHouse();
-    generateOpponent();
     displayFlyingLesson();
     displayOpponent();
     startGame();
