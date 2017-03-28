@@ -86,7 +86,7 @@ function displaySortingForm() {
 
 //function to get user's prefered Hogwarts House
 function generateHouse() {
-    $(".sorting").on('click', '#sortClick', function(e) { 
+    $(".sorting").on('submit', '.sorting-form', function(e) { 
         e.preventDefault();    
         $(".sorting").hide();       
         house = $('.sorting-form input:checked').val();
@@ -177,7 +177,7 @@ function startGame() {
 /*function for interaction with other students*/  
 function interact() { 
     $('.game').html(state.standsForm);
-    $('#standsClick').click(function(e) { 
+    $('.game').on('submit', '.stands-form', function(e) { 
         e.preventDefault();   
         var stands = "";  
         //object to be used later in this function  
@@ -225,7 +225,7 @@ function interact() {
 /*bludger function*/
 function bludger() {
     $('.game').html(state.bludgerForm);
-    $('#bludgerClick').on('click', function(e) {
+    $('.game').on('submit', '.bludger-form', function(e) {
         e.preventDefault();
         //creates variable based on user selection
         var bludgerSelection = $('.bludger-form input:checked').val();
@@ -292,7 +292,7 @@ function gameOptions() {
 function caught() { 
     $('.game').html(state.caughtForm);   
     var snitch = "";
-    $('.game').on('click', '#caughtClick', function(e) {
+    $('.game').on('submit', '.caught-options', function(e) {
         e.preventDefault();
         snitch = $('.caught-options input:checked').val();
         $('.game').html('');
