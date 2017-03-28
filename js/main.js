@@ -276,6 +276,7 @@ function caught() {
     };    
 
 function displayResults() {
+    $('.results').show();
     if (state.myScore > state.rivalScore) {
         $(".win").show();
         }

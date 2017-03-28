@@ -4,7 +4,7 @@ body {
     color: white;
 }
 
-div {
+section {
     text-align: center;
     font-size: 2em;
 }
@@ -17,47 +17,18 @@ div {
     border-radius: 5%;
 }
 
-.how h3 {
-    font-size: 1.25em;
-    border-bottom: 2px solid #989799;
-}
-
-.clickhere:hover, .how h3:hover {
+.clickhere:hover {
     cursor: pointer;
 }
 
-.how p, .hide {
-    display: none;
-}
-
-.sorting {
+.sorting, .welcome, .flying,
+.match, .results, .win, .loss  {
     display: none;
 }
 
 .housephoto {
     opacity: .70;
-}
-
-.welcome {
-    display: none;
-}
-
-.flying {
-    display: none;
-}
-
-.match {
-    display: none;
-}
 
 .opponent {
     text-transform: capitalize;
-}
-
-.win {
-    display: none;
-}
-
-.loss {
-    display: none;
 }
